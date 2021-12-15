@@ -39,14 +39,19 @@ namespace Lab_2
 
         private void Заполнить_Click(object sender, RoutedEventArgs e)
         {
-            if (Int32.TryParse(diapazon.Text, out int diapazo1) == true && Int32.TryParse(kolvo.Text, out int kolvo1) == true)
-            {
+            try 
+             {
+                int diapazo1 = Convert.ToInt32(diapazon.Text);
+                int kolvo1 = Convert.ToInt32(kolvo.Text);
                 _array = new int[kolvo1];
                 ArrayOperation.FillArrayRandom(_array, diapazo1);
                 dataGrid.ItemsSource = VisualArray.ToDataTable(_array).DefaultView;
                 Список.Clear();
+              }
+            catch
+            {
+                MessageBox.Show("Введите правильное значение");
             }
-            else MessageBox.Show("Введите правильное значение");
         }
 
         private void Решение_Click(object sender, RoutedEventArgs e)
